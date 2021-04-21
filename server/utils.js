@@ -59,3 +59,25 @@ export async function callPythonScript(scriptName, args = []) {
     console.log(err);
   });
 }
+
+export function hasParams(obj, params) {
+  let success = true;
+  params.forEach((param) => {
+    if (obj[param] === null || obj[param] === undefined || obj[param] === '') {
+      // eslint-disable-next-line no-bitwise
+      success &= false;
+    }
+  });
+  return success;
+}
+
+export function decorateRoute(url, fn) {
+  return [
+    url,
+    (req, res) => {
+      // eslint-disable-next-line no-console
+      console.log(`Started ${req.method} : ${url}\n params: ${JSON.stringify({ ...req.body, ...req.query }, null, 2)}`);
+      fn(req, res);
+    },
+  ];
+}

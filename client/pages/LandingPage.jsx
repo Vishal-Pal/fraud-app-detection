@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 
 import { navigateTo } from '@app/utils';
+import { Navbar, RequestAnalysis } from '@app/components';
 
 function LandingPage() {
+  const [isOpen, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   function ctaUi() {
     return (
       <>
@@ -11,7 +16,7 @@ function LandingPage() {
           className="m-v-5"
           variant="contained"
           color="secondary"
-          onClick={navigateTo('/request-analysis')}
+          onClick={handleOpen}
         >
           Request Analysis
         </Button>
@@ -31,7 +36,7 @@ function LandingPage() {
     return (
       <>
         <div className="landing__title">
-          deMystify.app
+          DeMystify.io
         </div>
         <div className="landing__sub-title">
           Unmasking fradulent applications
@@ -62,9 +67,14 @@ function LandingPage() {
 
   return (
     <div className="landing">
+      <Navbar />
       <div className="sr-container landing__box">
         {mainUi()}
       </div>
+      <RequestAnalysis
+        isOpen={isOpen}
+        onClose={handleClose}
+      />
     </div>
   );
 }

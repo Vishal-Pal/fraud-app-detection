@@ -2,5 +2,14 @@
 @import 'variables.scss';
 @import 'base.scss';
 
+// Libraries
+@import 'lib/toastify.scss';
+
+// Components
+@import 'card.scss';
+@import 'form.scss';
+@import 'loader.scss';
+
 // Page styles
 @import 'landing.scss';
+@import 'discover.scss';
